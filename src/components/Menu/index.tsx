@@ -77,7 +77,7 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
-const CODE_LINK = 'https://github.com/NexusLayer'
+const CODE_LINK = 'https://github.com/MarketCapy-Chain'
 
 export default function Menu() {
   const node = useRef<HTMLDivElement>()
@@ -109,11 +109,11 @@ export default function Menu() {
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://nexuslayer.xyz/">
+          <MenuItem id="link" href="https://marketcapy.xyz/">
             <Info size={14} />
             About
           </MenuItem>
-          <MenuItem id="link" href="https://docs.nexuslayer.xyz">
+          <MenuItem id="link" href="https://docs.marketcapy.xyz">
             <BookOpen size={14} />
             Docs
           </MenuItem>
@@ -121,7 +121,7 @@ export default function Menu() {
             <Code size={14} />
             Github
           </MenuItem>
-          <MenuItem id="link" href="https://t.me/NexusLayer">
+          <MenuItem id="link" href="https://t.me/MarketCapyChain">
             <MessageCircle size={14} />
             Telegram
           </MenuItem>

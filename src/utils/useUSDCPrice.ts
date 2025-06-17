@@ -18,8 +18,8 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined
       ],
-      [wrapped?.equals(USDC) ? undefined : wrapped, chainId === ChainId.T_LAYER ? USDC : undefined],
-      [chainId ? WETH[chainId] : undefined, chainId === ChainId.T_LAYER ? USDC : undefined]
+      [wrapped?.equals(USDC) ? undefined : wrapped, chainId === ChainId.CAPY ? USDC : undefined],
+      [chainId ? WETH[chainId] : undefined, chainId === ChainId.CAPY ? USDC : undefined]
     ],
     [chainId, currency, wrapped]
   )

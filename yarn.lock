@@ -1873,10 +1873,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nexuslayer/sdk@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@nexuslayer/sdk/-/sdk-0.1.0.tgz#db2f5bb1a1f12ca8898bcbc5d38cb3478048218e"
-  integrity sha512-Og6lLf9vYtV5RWakgtMbk2vuOvu6VQ08Eqy3EDz/9KPt/XOoN9CTSi/xt6VrRn7MQxgXSMH2LsIELYk8Qr2m4A==
+"@nexuslayer/sdk@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@nexuslayer/sdk/-/sdk-0.1.1.tgz#2a1498c707d3f8edb2164b9ef3d1bb39953ab11c"
+  integrity sha512-SSqIB77u/qGKNVW8W+Cm7QCRpiaE263pJNe7Y54Rq/KujKXnfoQj/a/kivzGpWnpbHyWWU1Lt/1cl8FHnqIMig==
   dependencies:
     "@opus-fi/core" "^1.0.2"
     big.js "^5.2.2"

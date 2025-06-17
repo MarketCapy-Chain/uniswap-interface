@@ -10,21 +10,21 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-export const SWAP = new Token(ChainId.T_LAYER, '0x26aCBE672A9c29d89313b5c8b72c1B0493b7C386', 18, 'XWAP', 'NeXwap')
-export const USDC = new Token(ChainId.T_LAYER, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.T_LAYER, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const COMP = new Token(ChainId.T_LAYER, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
-export const MKR = new Token(ChainId.T_LAYER, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
-export const AMPL = new Token(ChainId.T_LAYER, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
+export const SWAP = new Token(ChainId.CAPY, '0x26aCBE672A9c29d89313b5c8b72c1B0493b7C386', 18, 'XWAP', 'NeXwap')
+export const USDC = new Token(ChainId.CAPY, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
+export const USDT = new Token(ChainId.CAPY, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
+export const COMP = new Token(ChainId.CAPY, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
+export const MKR = new Token(ChainId.CAPY, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
+export const AMPL = new Token(ChainId.CAPY, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 
 const WETH_ONLY: ChainTokenList = {
-  [ChainId.T_LAYER]: [WETH[ChainId.T_LAYER]]
+  [ChainId.CAPY]: [WETH[ChainId.CAPY]]
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.T_LAYER]: [...WETH_ONLY[ChainId.T_LAYER], SWAP, USDC, USDT, COMP, MKR]
+  [ChainId.CAPY]: [...WETH_ONLY[ChainId.CAPY], SWAP, USDC, USDT, COMP, MKR]
 }
 
 /**
@@ -32,28 +32,28 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * tokens.
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.T_LAYER]: {
-    [AMPL.address]: [SWAP, WETH[ChainId.T_LAYER]]
+  [ChainId.CAPY]: {
+    [AMPL.address]: [SWAP, WETH[ChainId.CAPY]]
   }
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.T_LAYER]: [...WETH_ONLY[ChainId.T_LAYER], SWAP, USDC, USDT]
+  [ChainId.CAPY]: [...WETH_ONLY[ChainId.CAPY], SWAP, USDC, USDT]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.T_LAYER]: [...WETH_ONLY[ChainId.T_LAYER], SWAP, USDC, USDT]
+  [ChainId.CAPY]: [...WETH_ONLY[ChainId.CAPY], SWAP, USDC, USDT]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.T_LAYER]: [
+  [ChainId.CAPY]: [
     [
-      new Token(ChainId.T_LAYER, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
-      new Token(ChainId.T_LAYER, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
+      new Token(ChainId.CAPY, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
+      new Token(ChainId.CAPY, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
     ],
     [USDC, USDT],
     [SWAP, USDT]
