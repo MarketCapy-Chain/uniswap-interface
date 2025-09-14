@@ -2,9 +2,10 @@ import { Web3Provider } from '@ethersproject/providers'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
+import { ThirdwebProvider } from '@thirdweb-dev/react'
 import { NetworkContextName } from './constants'
 import 'inter-ui'
 import './i18n'
@@ -58,22 +59,42 @@ function Updaters() {
   )
 }
 
-ReactDOM.render(
+const container = document.getElementById('root')!
+const root = createRoot(container)
+
+root.render(
   <>
     <FixedGlobalStyle />
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <Web3ProviderNetwork getLibrary={getLibrary}>
-        <Provider store={store}>
-          <Updaters />
-          <ThemeProvider>
-            <>
-              <ThemedGlobalStyle />
-              <App />
-            </>
-          </ThemeProvider>
-        </Provider>
-      </Web3ProviderNetwork>
-    </Web3ReactProvider>
-  </>,
-  document.getElementById('root')
+    <ThirdwebProvider 
+      clientId="5365d71ad2610b6c625f6c43b8229df3"
+      activeChain={{
+        chainId: 586,
+        rpc: [process.env.REACT_APP_NETWORK_URL || ""],
+        nativeCurrency: {
+          decimals: 18,
+          name: "Astra",
+          symbol: "AST",
+        },
+        shortName: "capy",
+        slug: "capy",
+        testnet: false,
+        chain: "Capy",
+        name: "Capy",
+      }}
+    >
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Web3ProviderNetwork getLibrary={getLibrary}>
+          <Provider store={store}>
+            <Updaters />
+            <ThemeProvider>
+              <>
+                <ThemedGlobalStyle />
+                <App />
+              </>
+            </ThemeProvider>
+          </Provider>
+        </Web3ProviderNetwork>
+      </Web3ReactProvider>
+    </ThirdwebProvider>
+  </>
 )

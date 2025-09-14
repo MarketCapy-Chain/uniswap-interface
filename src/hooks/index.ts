@@ -6,10 +6,26 @@ import { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { injected } from '../connectors'
 import { NetworkContextName } from '../constants'
+import { useThirdwebWeb3 } from './useThirdwebWeb3'
 
 export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & { chainId?: ChainId } {
   const context = useWeb3ReactCore<Web3Provider>()
   const contextNetwork = useWeb3ReactCore<Web3Provider>(NetworkContextName)
+  const thirdwebContext = useThirdwebWeb3()
+  
+  // Prefer Thirdweb connection if available, otherwise fall back to Web3React
+  if (thirdwebContext.active) {
+    return {
+      ...thirdwebContext,
+      chainId: ChainId.CAPY,
+      connector: undefined,
+      error: undefined,
+      activate: () => Promise.resolve(),
+      setError: () => {},
+      deactivate: () => {}
+    } as any
+  }
+  
   return context.active ? context : contextNetwork
 }
 

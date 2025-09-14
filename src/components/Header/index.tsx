@@ -16,7 +16,7 @@ import Settings from '../Settings'
 import Menu from '../Menu'
 
 import Row, { RowBetween } from '../Row'
-import Web3Status from '../Web3Status'
+import ThirdwebWalletStatus from '../ThirdwebWalletStatus'
 
 const HeaderFrame = styled.div`
   display: flex;
@@ -159,7 +159,7 @@ export default function Header() {
                   {userEthBalance?.toSignificant(4)} CAPY
                 </BalanceText>
               ) : null}
-              <Web3Status />
+              <ThirdwebWalletStatus />
             </AccountElement>
           </HeaderElement>
           <HeaderElementWrap>

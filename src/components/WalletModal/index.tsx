@@ -3,11 +3,13 @@ import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
+import { useAddress } from '@thirdweb-dev/react'
 import usePrevious from '../../hooks/usePrevious'
 import { useWalletModalOpen, useWalletModalToggle } from '../../state/application/hooks'
 
 import Modal from '../Modal'
 import AccountDetails from '../AccountDetails'
+import ThirdwebAccountDetails from '../ThirdwebAccountDetails'
 import PendingView from './PendingView'
 import Option from './Option'
 import { SUPPORTED_WALLETS } from '../../constants'
@@ -124,6 +126,7 @@ export default function WalletModal({
 }) {
   // important that these are destructed from the account-specific web3-react context
   const { active, account, connector, activate, error } = useWeb3React()
+  const thirdwebAddress = useAddress()
 
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT)
 
@@ -295,7 +298,20 @@ export default function WalletModal({
         </UpperSection>
       )
     }
-    if (account && walletView === WALLET_VIEWS.ACCOUNT) {
+    if ((account || thirdwebAddress) && walletView === WALLET_VIEWS.ACCOUNT) {
+      // Use Thirdweb account details if connected via Thirdweb
+      if (thirdwebAddress) {
+        return (
+          <ThirdwebAccountDetails
+            toggleWalletModal={toggleWalletModal}
+            pendingTransactions={pendingTransactions}
+            confirmedTransactions={confirmedTransactions}
+            ENSName={ENSName}
+            openOptions={() => setWalletView(WALLET_VIEWS.OPTIONS)}
+          />
+        )
+      }
+      // Otherwise use regular Web3React account details
       return (
         <AccountDetails
           toggleWalletModal={toggleWalletModal}
