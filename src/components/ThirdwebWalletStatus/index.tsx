@@ -141,12 +141,6 @@ export default function ThirdwebWalletStatus() {
       <ConnectWallet 
         theme="dark"
         btnTitle={t('Connect to a wallet')}
-        modalTitle="Connect your wallet"
-        modalSize="wide"
-        welcomeScreen={{
-          title: "Connect to Uniswap",
-          subtitle: "Connect your wallet to start trading"
-        }}
       />
     </StyledConnectWallet>
   )

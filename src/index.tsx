@@ -2,10 +2,10 @@ import { Web3Provider } from '@ethersproject/providers'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
-import { ThirdwebProvider } from '@thirdweb-dev/react'
+import { ThirdwebProvider, ChainId } from '@thirdweb-dev/react'
 import { NetworkContextName } from './constants'
 import 'inter-ui'
 import './i18n'
@@ -59,28 +59,12 @@ function Updaters() {
   )
 }
 
-const container = document.getElementById('root')!
-const root = createRoot(container)
-
-root.render(
+ReactDOM.render(
   <>
     <FixedGlobalStyle />
     <ThirdwebProvider 
       clientId="5365d71ad2610b6c625f6c43b8229df3"
-      activeChain={{
-        chainId: 586,
-        rpc: [process.env.REACT_APP_NETWORK_URL || ""],
-        nativeCurrency: {
-          decimals: 18,
-          name: "Astra",
-          symbol: "AST",
-        },
-        shortName: "capy",
-        slug: "capy",
-        testnet: false,
-        chain: "Capy",
-        name: "Capy",
-      }}
+      activeChain={586}
     >
       <Web3ReactProvider getLibrary={getLibrary}>
         <Web3ProviderNetwork getLibrary={getLibrary}>
@@ -96,5 +80,6 @@ root.render(
         </Web3ProviderNetwork>
       </Web3ReactProvider>
     </ThirdwebProvider>
-  </>
+  </>,
+  document.getElementById('root')
 )
